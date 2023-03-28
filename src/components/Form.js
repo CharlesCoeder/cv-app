@@ -10,7 +10,9 @@ class Form extends Component {
   }
 
   handleFieldChange(fieldId, value) {
-    this.setState({ [fieldId]: value });
+    this.setState({ [fieldId]: value }, () => {
+      this.props.updateState(this.props.formName, this.state)
+    });
   }
 
   render() {
@@ -27,7 +29,6 @@ class Form extends Component {
       <div>
         {this.props.formName}
         {fields}
-        <div>{JSON.stringify(this.state)}</div>
       </div>
     );
   }

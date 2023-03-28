@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
-import Form from './components/Form';
+import UserInput from './components/UserInput';
+import ResumeOutput from './components/ResumeOutput';
 
 class App extends Component{
+
+  constructor(props) {
+    super(props);
+
+    this.state = {};
+    this.updateState = this.updateState.bind(this);
+  }
+
+  updateState(key, state){
+    this.setState({[key]: state});
+  }
+
   render(){
-    const basicInfo = ['First Name', 'Last Name', 'Email', 'Phone Number', 'City', 'State', 'Zip']
-    const education = ['School Name', 'Field of Study', 'GPA', 'Graduation Date', 'City', 'State',]
-    const workExperience = ['Employer', 'Position Title', 'Start Date', 'End date', 'City', 'State']
     return (
       <div className="App">
-        <Form fields={basicInfo} formName="Basic Information"/>
-        <Form fields={education} formName="Education"/>
-        <Form fields={workExperience} formName="Work Experience"/>
+        <UserInput updateState={this.updateState}/>
+        <ResumeOutput state={this.state}/>
       </div>
     );
   }
