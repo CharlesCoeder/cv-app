@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import UserInput from './components/UserInput';
-import ResumeOutput from './components/ResumeOutput';
+import UserInput from './components/input/UserInput';
+import ResumeOutput from './components/output/ResumeOutput';
 
 class App extends Component{
 
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      'Basic Information': {},
+      'Education': {},
+      'Work Experience': {},
+    };
     this.updateState = this.updateState.bind(this);
   }
 
