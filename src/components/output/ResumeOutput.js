@@ -18,14 +18,13 @@ class ResumeOutput extends Component {
 
     return (
 
-        <div>
-          <h1>Basic Info</h1>
+        <div className="ResumeOutput">
           <BasicInfo data={state['Basic Information']} />
-          <hr></hr>
           <h1>Education</h1>
-          <Education data={state['Education']} />
           <hr></hr>
+          <Education data={state['Education']} />
           <h1>Work Experience</h1>
+          <hr></hr>
           <WorkExperience data={state['Work Experience']} />
 
         {/* {sections} */}

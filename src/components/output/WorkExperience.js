@@ -13,12 +13,9 @@ class WorkExperience extends Component {
 
     return (
       <div className="WorkExperience">
-        <div className="employer">{employer}</div>
+        <div className="employer">{employer} | {city}, {state}</div>
         <div className="positionTitle">{positionTitle}</div>
-        <div className="startDate">{startDate}</div>
-        <div className="endDate">{endDate}</div>
-        <div className="city">{city}</div>
-        <div className="state">{state}</div>
+        <div className="dates">{startDate} - {endDate}</div>
       </div> 
     )
   }

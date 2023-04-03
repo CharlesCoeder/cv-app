@@ -15,13 +15,7 @@ class BasicInfo extends Component {
     return (
       <div className="basicInformation">
         <div className="name">{firstName} {lastName}</div>
-        <div className="email">{email}</div>
-        <div className="phone">{phone}</div>
-        <div className="address">
-          <div className="city">{city}</div>
-          <div className="state">{state}</div>
-          <div className="zip">{zip}</div>
-        </div>
+        <div className="info">{email} | {phone} | {city}, {state}, {zip}</div>
       </div> 
     )
   }
