@@ -11,7 +11,7 @@ class WorkExperienceForm extends Component {
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value }, () => {
-      this.props.updateState('Work Experience', this.state)
+      this.props.updateState('Work Experience', this.props.id, fieldId, value)
     });
   }
 

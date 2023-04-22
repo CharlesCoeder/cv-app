@@ -11,7 +11,7 @@ class EducationForm extends Component {
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value }, () => {
-      this.props.updateState('Education', this.state)
+      this.props.updateState('Education', this.props.id, fieldId, value)
     });
   }
 

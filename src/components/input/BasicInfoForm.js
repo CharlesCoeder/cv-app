@@ -11,7 +11,7 @@ class BasicInfoForm extends Component {
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value }, () => {
-      this.props.updateState('Basic Information', this.state)
+      this.props.updateState('Basic Information', 0, fieldId, value)
     });
   }
 
