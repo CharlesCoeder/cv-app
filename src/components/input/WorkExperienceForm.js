@@ -7,6 +7,7 @@ class WorkExperienceForm extends Component {
     this.state = {};
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleFieldChange(fieldId, value) {
@@ -15,12 +16,16 @@ class WorkExperienceForm extends Component {
     });
   }
 
+  handleDelete(){
+    this.props.handleDelete('Work Experience', this.props.id);
+  }
+
   render(){
 
 
     return (
       <div className="inputSection">
-        <div>Work Experience</div>
+        <div>Work Experience<button onClick={this.handleDelete}>X</button></div>
         <InputField key={'Employer'} id={'Employer'} onChange={this.handleFieldChange} value={this.state['Employer']}/>
         <InputField key={'Position Title'} id={'Position Title'} onChange={this.handleFieldChange} value={this.state['Position Title']}/>
         <InputField key={'Start Date'} id={'Start Date'} onChange={this.handleFieldChange} value={this.state['Start Date']}/>

@@ -54,6 +54,7 @@ class App extends Component{
     this.updateState = this.updateState.bind(this);
     this.addEducation = this.addEducation.bind(this);
     this.addWork = this.addWork.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   updateState(container, sectionID, property, value){
@@ -83,6 +84,7 @@ class App extends Component{
         'End Date' : '05/20/2022',
         'City' : 'New York',
         'State' : 'NY',
+        sectionType: 'Education',
         id: prevState.educationCounter},
       },
 
@@ -101,6 +103,7 @@ class App extends Component{
         'End Date' : '03/30/2023',
         'City' : 'New York',
         'State' : 'NY',
+        sectionType: 'Work Experience',
         id: prevState.workCounter,
         }
       },
@@ -108,11 +111,18 @@ class App extends Component{
       workCounter : prevState.workCounter + 1
     }))}
 
+    // remove a section from state
+    handleDelete(sectionType, id){
+      let state = {...this.state};
+      delete state[sectionType][id];
+      this.setState(state);
+  }
+
   render(){
     return (
       <div className="App">
         <UserInput updateState={this.updateState} addEducation={this.addEducation} addWork={this.addWork} educationCounter={this.state.educationCounter}
-          workCounter={this.state.workCounter} />
+          workCounter={this.state.workCounter} handleDelete={this.handleDelete}/>
 
         <ResumeOutput state={this.state}/>
       </div>

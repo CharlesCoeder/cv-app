@@ -7,6 +7,7 @@ class EducationForm extends Component {
     this.state = {};
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleFieldChange(fieldId, value) {
@@ -15,12 +16,16 @@ class EducationForm extends Component {
     });
   }
 
+  handleDelete(){
+    this.props.handleDelete('Education', this.props.id);
+  }
+
   render(){
 
 
     return (
       <div className="inputSection">
-        <div>Education</div>
+        <div>Education<button onClick={this.handleDelete}>X</button></div>
         <InputField key={'School Name'} id={'School Name'} onChange={this.handleFieldChange} value={this.state['School Name']}/>
         <InputField key={'Degree'} id={'Degree'} onChange={this.handleFieldChange} value={this.state['Degree']}/>
         <InputField key={'Field of Study'} id={'Field of Study'} onChange={this.handleFieldChange} value={this.state['Field of Study']}/>
