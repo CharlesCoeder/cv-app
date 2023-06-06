@@ -1,76 +1,69 @@
 import React, { Component } from 'react';
-import BasicInfoForm from './BasicInfoForm';
-import EducationForm from './EducationForm';
-import WorkExperienceForm from './WorkExperienceForm'
+import BasicInfoPage from './pages/BasicInfoPage';
+import EducationPage from './pages/EducationPage';
+import WorkPage from './pages/WorkPage';
+import PageDisplayer from './PageDisplayer';
+import Sidebar from './Sidebar';
 
 class UserInput extends Component {
 
   constructor(props){
-    super(props)
-    this.onClickEducation = this.onClickEducation.bind(this);
-    this.onClickWork = this.onClickWork.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-
+    super(props);
+    
     this.state = {
-      educationForms : {0: <EducationForm updateState={this.props.updateState} handleDelete={this.handleDelete} id={0} key={0}/>},
-      workForms : {0: <WorkExperienceForm updateState={this.props.updateState} handleDelete={this.handleDelete} id={0} key={0}/>},     
+      currentPage : 'basicInfoPage',
+      educationFormIDs : [0],
+      workFormIDs : [0],
     }
 
+    this.changePage = this.changePage.bind(this);
+    this.addEducationForm = this.addEducationForm.bind(this);
+    this.addWorkForm = this.addWorkForm.bind(this);
+    this.removeFormID = this.removeFormID.bind(this);
   }
 
-  onClickEducation(){
-    const { educationCounter, updateState } = this.props;
-
-    // add input area for new education section
+  addEducationForm(){
     this.setState(prevState => ({
-      educationForms : {...prevState.educationForms, 
-        educationCounter : <EducationForm updateState={updateState} handleDelete={this.handleDelete} id={educationCounter} key={educationCounter}/>}
-    }));
-    
-    // add new section to parent state, which will then show its output
-    this.props.addEducation()
+      educationFormIDs : [...prevState.educationFormIDs, this.props.educationCounter]
+    }))
   }
 
-  onClickWork(){
-
-    const { workCounter, updateState } = this.props;
-
-    // add input area for new work section
+  addWorkForm(){
     this.setState(prevState => ({
-      workForms: {...prevState.workForms,
-        workCounter : <WorkExperienceForm updateState={updateState} handleDelete={this.handleDelete} id={workCounter} key={workCounter}/>}
-    }));
-    
-    // add new section to parent state, which will then show its output
-    this.props.addWork()
+      workFormIDs : [...prevState.workFormIDs, this.props.workCounter]
+    }))
   }
 
-  handleDelete(sectionType, id){
-    // remove section from App.js state
-    this.props.handleDelete(sectionType, id);
+  changePage(newPage){
+    this.setState({ currentPage : newPage });
+  }
 
-    // remove section's input area from DOM
-    if (sectionType === 'Education'){
-      let state = {...this.state};
-      delete state['educationForms'][id];
-      this.setState(state);
-    }
-    else if (sectionType === 'Work Experience'){
-      let state = {...this.state};
-      delete state['workForms'][id];
-      this.setState(state);
-    }
+  removeFormID(key, id){
+    this.setState(prevState => ({
+      [key]: prevState[key].filter(formID => formID !== id),
+    }));
   }
 
   render(){
+    let page;
+    switch(this.state.currentPage) {
+      case 'basicInfoPage':
+        page = <BasicInfoPage updateState={this.props.updateState} />
+        break;
+      case 'educationPage':
+        page = <EducationPage formIDs={this.state.educationFormIDs} removeFormID={this.removeFormID} updateState={this.props.updateState} handleDelete={this.props.handleDelete} addEducationOutput={this.props.addEducation} addEducationForm={this.addEducationForm}/>
+        break;
+      case 'workPage':
+        page = <WorkPage formIDs={this.state.workFormIDs} removeFormID={this.removeFormID} updateState={this.props.updateState} handleDelete={this.props.handleDelete} addWorkOutput={this.props.addWork} addWorkForm={this.addWorkForm} />
+        break;
+      default:
+        page = <BasicInfoPage updateState={this.props.updateState} />
+    }
 
     return (
       <div className="UserInput">
-        <BasicInfoForm updateState={this.props.updateState}/>
-        {Object.values(this.state.educationForms)}
-        <button onClick={this.onClickEducation}>Add new education</button>
-        {Object.values(this.state.workForms)}
-        <button onClick={this.onClickWork}>Add new work</button>
+        <Sidebar changePage={this.changePage}/>
+        <PageDisplayer page={page}/>
       </div> 
     )
   }

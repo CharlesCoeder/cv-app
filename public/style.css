@@ -70,3 +70,17 @@ body {
   font-weight: bold;
   font-style: italic;
 }
+
+.list > li {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.list > li:hover {
+  background-color: lightgray;
+}
+
+.list {
+  list-style-type: none;
+}

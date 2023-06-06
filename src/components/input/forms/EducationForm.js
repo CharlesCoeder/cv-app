@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import InputField from './InputField';
 
-class WorkExperienceForm extends Component {
+class EducationForm extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -12,22 +12,22 @@ class WorkExperienceForm extends Component {
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value }, () => {
-      this.props.updateState('Work Experience', this.props.id, fieldId, value)
+      this.props.updateState('Education', this.props.id, fieldId, value)
     });
   }
 
   handleDelete(){
-    this.props.handleDelete('Work Experience', this.props.id);
+    this.props.handleDelete('Education', this.props.id);
   }
 
   render(){
-
-
     return (
       <div className="inputSection">
-        <div>Work Experience<button onClick={this.handleDelete}>X</button></div>
-        <InputField key={'Employer'} id={'Employer'} onChange={this.handleFieldChange} value={this.state['Employer']}/>
-        <InputField key={'Position Title'} id={'Position Title'} onChange={this.handleFieldChange} value={this.state['Position Title']}/>
+        <div>Education<button onClick={this.handleDelete}>X</button></div>
+        <InputField key={'School Name'} id={'School Name'} onChange={this.handleFieldChange} value={this.state['School Name']}/>
+        <InputField key={'Degree'} id={'Degree'} onChange={this.handleFieldChange} value={this.state['Degree']}/>
+        <InputField key={'Field of Study'} id={'Field of Study'} onChange={this.handleFieldChange} value={this.state['Field of Study']}/>
+        <InputField key={'GPA'} id={'GPA'} onChange={this.handleFieldChange} value={this.state['GPA']}/>
         <InputField key={'Start Date'} id={'Start Date'} onChange={this.handleFieldChange} value={this.state['Start Date']}/>
         <InputField key={'End Date'} id={'End Date'} onChange={this.handleFieldChange} value={this.state['End Date']}/>
         <InputField key={'City'} id={'City'} onChange={this.handleFieldChange} value={this.state['City']}/>
@@ -37,4 +37,4 @@ class WorkExperienceForm extends Component {
   }
 }
 
-export default WorkExperienceForm;
+export default EducationForm;

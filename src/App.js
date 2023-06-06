@@ -71,12 +71,12 @@ class App extends Component{
   }))}
 
   addEducation(){
-    this.setState( (prevState) => ({
+    this.setState((prevState) => ({
       ...prevState,
       'Education' : {
         ...prevState['Education'],
         [prevState.educationCounter] : {
-        'School Name' : 'asdfg;jlkafdsjkl; Institute',
+        'School Name' : 'Coppermind Institute',
         'Degree' : 'BS',
         'Field of Study' : 'Computer Science',
         'GPA' : '4.0',
@@ -117,12 +117,12 @@ class App extends Component{
       delete state[sectionType][id];
       this.setState(state);
   }
-
+  
   render(){
     return (
       <div className="App">
         <UserInput updateState={this.updateState} addEducation={this.addEducation} addWork={this.addWork} educationCounter={this.state.educationCounter}
-          workCounter={this.state.workCounter} handleDelete={this.handleDelete}/>
+          workCounter={this.state.workCounter} handleDelete={this.handleDelete} />
 
         <ResumeOutput state={this.state}/>
       </div>
