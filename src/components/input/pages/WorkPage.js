@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import WorkForm from '../forms/WorkForm';
 
 class WorkPage extends Component {
@@ -48,5 +49,14 @@ class WorkPage extends Component {
     );
   }
 }
+
+WorkPage.propTypes = {
+  removeFormID: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  addWorkForm: PropTypes.func.isRequired,
+  addWorkOutput: PropTypes.func.isRequired,
+  formIDs: PropTypes.arrayOf(PropTypes.number).isRequired,
+  updateState: PropTypes.func.isRequired,
+};
 
 export default WorkPage;

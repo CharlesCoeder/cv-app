@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import BasicInfo from './BasicInfo';
 import Education from './Education';
 import WorkExperience from './WorkExperience';
@@ -46,5 +47,45 @@ class ResumeOutput extends Component {
     );
   }
 }
+
+ResumeOutput.propTypes = {
+  state: PropTypes.shape({
+    Education: PropTypes.objectOf(
+      PropTypes.shape({
+        'School Name': PropTypes.string,
+        Degree: PropTypes.string,
+        'Field of Study': PropTypes.string,
+        GPA: PropTypes.string,
+        'Start Date': PropTypes.string,
+        'End Date': PropTypes.string,
+        City: PropTypes.string,
+        State: PropTypes.string,
+        id: PropTypes.number,
+      }),
+    ).isRequired,
+    'Work Experience': PropTypes.objectOf(
+      PropTypes.shape({
+        Employer: PropTypes.string,
+        'Position Title': PropTypes.string,
+        'Start Date': PropTypes.string,
+        'End Date': PropTypes.string,
+        City: PropTypes.string,
+        State: PropTypes.string,
+        id: PropTypes.number,
+      }),
+    ).isRequired,
+    'Basic Information': PropTypes.objectOf(
+      PropTypes.shape({
+        'First Name': PropTypes.string,
+        'Last Name': PropTypes.string,
+        Email: PropTypes.string,
+        'Phone Number': PropTypes.string,
+        City: PropTypes.string,
+        State: PropTypes.string,
+        Zip: PropTypes.string,
+      }),
+    ).isRequired,
+  }).isRequired,
+};
 
 export default ResumeOutput;

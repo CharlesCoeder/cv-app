@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import BasicInfoPage from './pages/BasicInfoPage';
 import EducationPage from './pages/EducationPage';
 import WorkPage from './pages/WorkPage';
-import PageDisplayer from './PageDisplayer';
 import Sidebar from './Sidebar';
 
 class UserInput extends Component {
@@ -86,10 +86,19 @@ class UserInput extends Component {
     return (
       <div className="UserInput">
         <Sidebar changePage={this.changePage} />
-        <PageDisplayer page={page} />
+        {page}
       </div>
     );
   }
 }
+
+UserInput.propTypes = {
+  educationCounter: PropTypes.number.isRequired,
+  workCounter: PropTypes.number.isRequired,
+  updateState: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  addEducation: PropTypes.func.isRequired,
+  addWork: PropTypes.func.isRequired,
+};
 
 export default UserInput;

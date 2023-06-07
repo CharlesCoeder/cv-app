@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import InputField from './InputField';
 
 class WorkForm extends Component {
@@ -24,7 +25,7 @@ class WorkForm extends Component {
 
   render() {
     const {
-      Employer, 'Position Title': positionTitle, 'Start Date': startDate, 'End Date': endDate, City, State
+      Employer, 'Position Title': positionTitle, 'Start Date': startDate, 'End Date': endDate, City, State,
     } = this.state;
     return (
       <div className="inputSection">
@@ -42,5 +43,11 @@ class WorkForm extends Component {
     );
   }
 }
+
+WorkForm.propTypes = {
+  updateState: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+};
 
 export default WorkForm;

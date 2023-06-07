@@ -1,5 +1,6 @@
 /* eslint react/jsx-one-expression-per-line: */// --> OFF
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Education(props) {
   const {
@@ -18,5 +19,18 @@ function Education(props) {
     </div>
   );
 }
+
+Education.propTypes = {
+  data: PropTypes.shape({
+    'School Name': PropTypes.string.isRequired,
+    Degree: PropTypes.string.isRequired,
+    'Field of Study': PropTypes.string.isRequired,
+    GPA: PropTypes.string.isRequired,
+    'Start Date': PropTypes.string.isRequired,
+    'End Date': PropTypes.string.isRequired,
+    City: PropTypes.string.isRequired,
+    State: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default Education;

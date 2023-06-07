@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Sidebar extends Component {
   constructor(props) {
@@ -24,5 +25,9 @@ class Sidebar extends Component {
     );
   }
 }
+
+Sidebar.propTypes = {
+  changePage: PropTypes.func.isRequired,
+};
 
 export default Sidebar;

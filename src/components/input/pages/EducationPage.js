@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import EducationForm from '../forms/EducationForm';
 
 class EducationPage extends Component {
@@ -48,5 +49,14 @@ class EducationPage extends Component {
     );
   }
 }
+
+EducationPage.propTypes = {
+  removeFormID: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  addEducationForm: PropTypes.func.isRequired,
+  addEducationOutput: PropTypes.func.isRequired,
+  formIDs: PropTypes.arrayOf(PropTypes.number).isRequired,
+  updateState: PropTypes.func.isRequired,
+};
 
 export default EducationPage;

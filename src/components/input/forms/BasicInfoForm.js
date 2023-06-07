@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import InputField from './InputField';
 
 class BasicInfoForm extends Component {
@@ -34,5 +35,9 @@ class BasicInfoForm extends Component {
     );
   }
 }
+
+BasicInfoForm.propTypes = {
+  updateState: PropTypes.func.isRequired,
+};
 
 export default BasicInfoForm;

@@ -1,5 +1,6 @@
 /* eslint react/jsx-one-expression-per-line: */// --> OFF
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 function WorkExperience(props) {
   const {
@@ -16,5 +17,16 @@ function WorkExperience(props) {
     </div>
   );
 }
+
+WorkExperience.propTypes = {
+  data: PropTypes.shape({
+    Employer: PropTypes.string.isRequired,
+    'Position Title': PropTypes.string.isRequired,
+    'Start Date': PropTypes.string.isRequired,
+    'End Date': PropTypes.string.isRequired,
+    City: PropTypes.string.isRequired,
+    State: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default WorkExperience;

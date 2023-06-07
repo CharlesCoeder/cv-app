@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import BasicInfoForm from '../forms/BasicInfoForm';
 
 function BasicInfoPage(props) {
@@ -9,5 +10,9 @@ function BasicInfoPage(props) {
     </div>
   );
 }
+
+BasicInfoPage.propTypes = {
+  updateState: PropTypes.func.isRequired,
+};
 
 export default BasicInfoPage;

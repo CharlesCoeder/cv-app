@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import InputField from './InputField';
 
 class EducationForm extends Component {
@@ -24,7 +25,7 @@ class EducationForm extends Component {
 
   render() {
     const {
-      'School Name': schoolName, Degree, 'Field of Study': fieldOfStudy, GPA, 'Start Date': startDate, 'End Date': endDate, City, State
+      'School Name': schoolName, Degree, 'Field of Study': fieldOfStudy, GPA, 'Start Date': startDate, 'End Date': endDate, City, State,
     } = this.state;
     return (
       <div className="inputSection">
@@ -44,5 +45,11 @@ class EducationForm extends Component {
     );
   }
 }
+
+EducationForm.propTypes = {
+  updateState: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+};
 
 export default EducationForm;
