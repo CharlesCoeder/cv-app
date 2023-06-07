@@ -1,15 +1,12 @@
-import React, { Component } from "react";
+import React from 'react';
 
-class PageDisplayer extends Component {
-    render(){
-
-        return (
-            <div>
-                {this.props.page}
-            </div>
-        )
-    }
-
+function PageDisplayer(props) {
+  const { page } = props;
+  return (
+    <div>
+      {page}
+    </div>
+  );
 }
 
 export default PageDisplayer;

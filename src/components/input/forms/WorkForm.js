@@ -11,27 +11,35 @@ class WorkForm extends Component {
   }
 
   handleFieldChange(fieldId, value) {
+    const { updateState, id } = this.props;
     this.setState({ [fieldId]: value }, () => {
-      this.props.updateState('Work Experience', this.props.id, fieldId, value)
+      updateState('Work Experience', id, fieldId, value);
     });
   }
 
-  handleDelete(){
-    this.props.handleDelete('Work Experience', this.props.id);
+  handleDelete() {
+    const { handleDelete, id } = this.props;
+    handleDelete('Work Experience', id);
   }
 
-  render(){
+  render() {
+    const {
+      Employer, 'Position Title': positionTitle, 'Start Date': startDate, 'End Date': endDate, City, State
+    } = this.state;
     return (
       <div className="inputSection">
-        <div>Work Experience<button onClick={this.handleDelete}>X</button></div>
-        <InputField key={'Employer'} id={'Employer'} onChange={this.handleFieldChange} value={this.state['Employer']}/>
-        <InputField key={'Position Title'} id={'Position Title'} onChange={this.handleFieldChange} value={this.state['Position Title']}/>
-        <InputField key={'Start Date'} id={'Start Date'} onChange={this.handleFieldChange} value={this.state['Start Date']}/>
-        <InputField key={'End Date'} id={'End Date'} onChange={this.handleFieldChange} value={this.state['End Date']}/>
-        <InputField key={'City'} id={'City'} onChange={this.handleFieldChange} value={this.state['City']}/>
-        <InputField key={'State'} id={'State'} onChange={this.handleFieldChange} value={this.state['State']}/>
-      </div> 
-    )
+        <div>
+          Work Experience
+          <button type="button" onClick={this.handleDelete}>X</button>
+        </div>
+        <InputField key="Employer" id="Employer" onChange={this.handleFieldChange} value={Employer} />
+        <InputField key="Position Title" id="Position Title" onChange={this.handleFieldChange} value={positionTitle} />
+        <InputField key="Start Date" id="Start Date" onChange={this.handleFieldChange} value={startDate} />
+        <InputField key="End Date" id="End Date" onChange={this.handleFieldChange} value={endDate} />
+        <InputField key="City" id="City" onChange={this.handleFieldChange} value={City} />
+        <InputField key="State" id="State" onChange={this.handleFieldChange} value={State} />
+      </div>
+    );
   }
 }
 

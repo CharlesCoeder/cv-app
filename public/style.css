@@ -71,16 +71,26 @@ body {
   font-style: italic;
 }
 
-.list > li {
+.pageBtn {
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: center;
   cursor: pointer;
   padding: 10px;
   border-radius: 20px;
 }
 
-.list > li:hover {
+.pageBtn:hover {
   background-color: lightgray;
 }
 
 .list {
   list-style-type: none;
+  display: flex;
+  flex-direction: column;
 }

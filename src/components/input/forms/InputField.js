@@ -7,14 +7,16 @@ class InputField extends Component {
   }
 
   handleChange(event) {
+    const { onChange, id } = this.props;
     const text = event.target.value;
-    this.props.onChange(this.props.id, text);
+    onChange(id, text);
   }
 
   render() {
+    const { value, id } = this.props;
     return (
       <div className="InputField">
-        <input onChange={this.handleChange} value={this.props.value} placeholder={this.props.id} />
+        <input onChange={this.handleChange} value={value} placeholder={id} />
       </div>
     );
   }

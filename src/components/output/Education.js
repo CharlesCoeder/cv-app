@@ -1,28 +1,22 @@
-import React, { Component } from 'react';
+/* eslint react/jsx-one-expression-per-line: */// --> OFF
+import React from 'react';
 
-class Education extends Component {
+function Education(props) {
+  const {
+    data: {
+      'School Name': schoolName, Degree: degree, 'Field of Study': fieldOfStudy, GPA: gpa, 'Start Date': startDate, 'End Date': endDate, City: city, State: state,
+    },
+  } = props;
 
-  render(){
-
-    const schoolName = this.props.data['School Name'];
-    const degree = this.props.data['Degree'];
-    const fieldOfStudy = this.props.data['Field of Study'];
-    const gpa = this.props.data['GPA'];
-    const startDate = this.props.data['Start Date'];
-    const endDate = this.props.data['End Date'];
-    const city = this.props.data['City'];
-    const state = this.props.data['State'];
-
-    return (
-      <div className="Education">
-        <div className="school">
-          {schoolName} | {city}, {state}
-        </div>
-        <div className="degree">{degree} in {fieldOfStudy}, GPA {gpa}</div>
-        <div className="dates">{startDate} - {endDate}</div>
-      </div> 
-    )
-  }
+  return (
+    <div className="Education">
+      <div className="school">
+        {schoolName} | {city}, {state}
+      </div>
+      <div className="degree">{degree} in {fieldOfStudy}, GPA {gpa}</div>
+      <div className="dates">{startDate} - {endDate}</div>
+    </div>
+  );
 }
 
 export default Education;
