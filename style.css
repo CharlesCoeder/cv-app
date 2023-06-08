@@ -41,7 +41,7 @@ body {
 .basicInformation {
   display: grid;
   grid-template-columns: auto auto auto;
-  justify-content: center;  
+  justify-content: center;
 }
 
 .name {
@@ -51,11 +51,13 @@ body {
   font-size: 2rem;
 }
 
-.school, .employer {
+.school,
+.employer {
   font-weight: bold;
 }
 
-.Education, .WorkExperience {
+.Education,
+.WorkExperience {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -69,4 +71,28 @@ body {
 .positionTitle {
   font-weight: bold;
   font-style: italic;
+}
+
+.pageBtn {
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.pageBtn:hover {
+  background-color: lightgray;
+}
+
+.list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
 }
