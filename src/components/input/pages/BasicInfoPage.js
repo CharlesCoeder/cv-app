@@ -1,16 +1,18 @@
-import React, { Component } from 'react';
-import BasicInfoForm from '../forms/BasicInfoForm';
+import React from "react";
+import PropTypes from "prop-types";
+import BasicInfoForm from "../forms/BasicInfoForm";
 
-class BasicInfoPage extends Component {
-
-    render(){
-        return (
-            <div>
-                <BasicInfoForm updateState={this.props.updateState}/>
-            </div>
-        )
-    }
-
+function BasicInfoPage(props) {
+  const { updateState } = props;
+  return (
+    <div>
+      <BasicInfoForm updateState={updateState} />
+    </div>
+  );
 }
+
+BasicInfoPage.propTypes = {
+  updateState: PropTypes.func.isRequired,
+};
 
 export default BasicInfoPage;

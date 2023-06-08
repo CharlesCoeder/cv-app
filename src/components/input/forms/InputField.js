@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class InputField extends Component {
   constructor(props) {
@@ -7,17 +8,29 @@ class InputField extends Component {
   }
 
   handleChange(event) {
+    const { onChange, id } = this.props;
     const text = event.target.value;
-    this.props.onChange(this.props.id, text);
+    onChange(id, text);
   }
 
   render() {
+    const { value, id } = this.props;
     return (
       <div className="InputField">
-        <input onChange={this.handleChange} value={this.props.value} placeholder={this.props.id} />
+        <input onChange={this.handleChange} value={value} placeholder={id} />
       </div>
     );
   }
 }
+
+InputField.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  value: PropTypes.string,
+};
+
+InputField.defaultProps = {
+  value: "",
+};
 
 export default InputField;

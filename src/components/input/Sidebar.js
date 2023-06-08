@@ -1,37 +1,54 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Sidebar extends Component {
-    constructor(props){
-        super(props);
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-        this.changeToBasicInfo = this.changeToBasicInfo.bind(this);
-        this.changeToEducation = this.changeToEducation.bind(this);
-        this.changeToWork = this.changeToWork.bind(this);
-    }
+  handleClick = (event) => {
+    const { changePage } = this.props;
+    const page = event.currentTarget.getAttribute("data-page");
+    changePage(page);
+  };
 
-    changeToBasicInfo(){
-        this.props.changePage('basicInfoPage');
-    }
-
-    changeToEducation(){
-        this.props.changePage('educationPage');
-    }
-
-    changeToWork(){
-        this.props.changePage('workPage');
-    }
-
-    render(){
-        return (
-            <div className='sidebar'>
-                <ul className='list'>
-                    <li onClick={this.changeToBasicInfo}>Basic Information</li>
-                    <li onClick={this.changeToEducation}>Education</li>
-                    <li onClick={this.changeToWork}>Work Experience</li>
-                </ul>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="sidebar">
+        <ul className="list">
+          <button
+            className="pageBtn"
+            type="button"
+            onClick={this.handleClick}
+            data-page="basicInfoPage"
+          >
+            Basic Information
+          </button>
+          <button
+            className="pageBtn"
+            type="button"
+            onClick={this.handleClick}
+            data-page="educationPage"
+          >
+            Education
+          </button>
+          <button
+            className="pageBtn"
+            type="button"
+            onClick={this.handleClick}
+            data-page="workPage"
+          >
+            Work Experience
+          </button>
+        </ul>
+      </div>
+    );
+  }
 }
+
+Sidebar.propTypes = {
+  changePage: PropTypes.func.isRequired,
+};
 
 export default Sidebar;
