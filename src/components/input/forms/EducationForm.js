@@ -5,7 +5,6 @@ import InputField from "./InputField";
 class EducationForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -13,9 +12,7 @@ class EducationForm extends Component {
 
   handleFieldChange(fieldId, value) {
     const { updateState, id } = this.props;
-    this.setState({ [fieldId]: value }, () => {
-      updateState("Education", id, fieldId, value);
-    });
+    updateState("Education", id, fieldId, value);
   }
 
   handleDelete() {
@@ -25,15 +22,17 @@ class EducationForm extends Component {
 
   render() {
     const {
-      "School Name": schoolName,
-      Degree,
-      "Field of Study": fieldOfStudy,
-      GPA,
-      "Start Date": startDate,
-      "End Date": endDate,
-      City,
-      State,
-    } = this.state;
+      data: {
+        "School Name": schoolName,
+        Degree,
+        "Field of Study": fieldOfStudy,
+        GPA,
+        "Start Date": startDate,
+        "End Date": endDate,
+        City,
+        State,
+      },
+    } = this.props;
     return (
       <div className="inputSection">
         <div>
@@ -99,6 +98,16 @@ EducationForm.propTypes = {
   updateState: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  data: PropTypes.shape({
+    "School Name": PropTypes.string,
+    Degree: PropTypes.string,
+    "Field of Study": PropTypes.string,
+    GPA: PropTypes.string,
+    "Start Date": PropTypes.string,
+    "End Date": PropTypes.string,
+    City: PropTypes.string,
+    State: PropTypes.string,
+  }).isRequired,
 };
 
 export default EducationForm;

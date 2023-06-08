@@ -5,28 +5,27 @@ import InputField from "./InputField";
 class BasicInfoForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
   }
 
   handleFieldChange(fieldId, value) {
     const { updateState } = this.props;
-    this.setState({ [fieldId]: value }, () => {
-      updateState("Basic Information", 0, fieldId, value);
-    });
+    updateState("Basic Information", 0, fieldId, value);
   }
 
   render() {
     const {
-      "First Name": firstName,
-      "Last Name": lastName,
-      Email,
-      "Phone Number": phoneNumber,
-      City,
-      State,
-      Zip,
-    } = this.state;
+      data: {
+        "First Name": firstName,
+        "Last Name": lastName,
+        Email,
+        "Phone Number": phoneNumber,
+        City,
+        State,
+        Zip,
+      },
+    } = this.props;
     return (
       <div className="inputSection">
         <div>Basic Information</div>
@@ -79,6 +78,15 @@ class BasicInfoForm extends Component {
 
 BasicInfoForm.propTypes = {
   updateState: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    "First Name": PropTypes.string,
+    "Last Name": PropTypes.string,
+    Email: PropTypes.string,
+    "Phone Number": PropTypes.string,
+    City: PropTypes.string,
+    State: PropTypes.string,
+    Zip: PropTypes.string,
+  }).isRequired,
 };
 
 export default BasicInfoForm;

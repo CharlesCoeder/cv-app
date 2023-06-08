@@ -5,7 +5,6 @@ import InputField from "./InputField";
 class WorkForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -13,9 +12,7 @@ class WorkForm extends Component {
 
   handleFieldChange(fieldId, value) {
     const { updateState, id } = this.props;
-    this.setState({ [fieldId]: value }, () => {
-      updateState("Work Experience", id, fieldId, value);
-    });
+    updateState("Work Experience", id, fieldId, value);
   }
 
   handleDelete() {
@@ -25,13 +22,15 @@ class WorkForm extends Component {
 
   render() {
     const {
-      Employer,
-      "Position Title": positionTitle,
-      "Start Date": startDate,
-      "End Date": endDate,
-      City,
-      State,
-    } = this.state;
+      data: {
+        Employer,
+        "Position Title": positionTitle,
+        "Start Date": startDate,
+        "End Date": endDate,
+        City,
+        State,
+      },
+    } = this.props;
     return (
       <div className="inputSection">
         <div>
@@ -85,6 +84,14 @@ WorkForm.propTypes = {
   updateState: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  data: PropTypes.shape({
+    Employer: PropTypes.string,
+    "Position Title": PropTypes.string,
+    "Start Date": PropTypes.string,
+    "End Date": PropTypes.string,
+    City: PropTypes.string,
+    State: PropTypes.string,
+  }).isRequired,
 };
 
 export default WorkForm;

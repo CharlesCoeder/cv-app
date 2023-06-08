@@ -31,13 +31,14 @@ class EducationPage extends Component {
   }
 
   render() {
-    const { formIDs, updateState } = this.props;
+    const { formIDs, updateState, data } = this.props;
     const forms = formIDs.map((formID) => (
       <EducationForm
         updateState={updateState}
         handleDelete={this.handleDelete}
         id={formID}
         key={formID}
+        data={data[formID]}
       />
     ));
 
@@ -52,6 +53,18 @@ class EducationPage extends Component {
   }
 }
 
+const educationItemPropType = PropTypes.shape({
+  "School Name": PropTypes.string,
+  Degree: PropTypes.string,
+  "Field of Study": PropTypes.string,
+  GPA: PropTypes.string,
+  "Start Date": PropTypes.string,
+  "End Date": PropTypes.string,
+  City: PropTypes.string,
+  State: PropTypes.string,
+  id: PropTypes.number,
+});
+
 EducationPage.propTypes = {
   removeFormID: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
@@ -59,6 +72,7 @@ EducationPage.propTypes = {
   addEducationOutput: PropTypes.func.isRequired,
   formIDs: PropTypes.arrayOf(PropTypes.number).isRequired,
   updateState: PropTypes.func.isRequired,
+  data: PropTypes.objectOf(educationItemPropType).isRequired,
 };
 
 export default EducationPage;

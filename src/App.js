@@ -121,7 +121,7 @@ class App extends Component {
   }
 
   render() {
-    const { educationCounter, workCounter } = this.state;
+    const { educationCounter, workCounter, ...data } = this.state;
 
     return (
       <div className="App">
@@ -132,6 +132,7 @@ class App extends Component {
           educationCounter={educationCounter}
           workCounter={workCounter}
           handleDelete={this.handleDelete}
+          data={data}
         />
 
         <ResumeOutput state={this.state} />

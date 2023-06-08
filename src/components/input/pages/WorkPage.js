@@ -31,13 +31,14 @@ class WorkPage extends Component {
   }
 
   render() {
-    const { formIDs, updateState } = this.props;
+    const { formIDs, updateState, data } = this.props;
     const forms = formIDs.map((formID) => (
       <WorkForm
         updateState={updateState}
         handleDelete={this.handleDelete}
         id={formID}
         key={formID}
+        data={data[formID]}
       />
     ));
 
@@ -52,6 +53,15 @@ class WorkPage extends Component {
   }
 }
 
+const workItemPropType = PropTypes.shape({
+  Employer: PropTypes.string,
+  "Position Title": PropTypes.string,
+  "Start Date": PropTypes.string,
+  "End Date": PropTypes.string,
+  City: PropTypes.string,
+  State: PropTypes.string,
+});
+
 WorkPage.propTypes = {
   removeFormID: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
@@ -59,6 +69,7 @@ WorkPage.propTypes = {
   addWorkOutput: PropTypes.func.isRequired,
   formIDs: PropTypes.arrayOf(PropTypes.number).isRequired,
   updateState: PropTypes.func.isRequired,
+  data: PropTypes.objectOf(workItemPropType).isRequired,
 };
 
 export default WorkPage;

@@ -48,10 +48,16 @@ class UserInput extends Component {
   render() {
     let page;
     const { currentPage, educationFormIDs, workFormIDs } = this.state;
-    const { updateState, handleDelete, addEducation, addWork } = this.props;
+    const { updateState, handleDelete, addEducation, addWork, data } =
+      this.props;
     switch (currentPage) {
       case "basicInfoPage":
-        page = <BasicInfoPage updateState={updateState} />;
+        page = (
+          <BasicInfoPage
+            updateState={updateState}
+            data={data["Basic Information"]}
+          />
+        );
         break;
       case "educationPage":
         page = (
@@ -62,6 +68,7 @@ class UserInput extends Component {
             handleDelete={handleDelete}
             addEducationOutput={addEducation}
             addEducationForm={this.addEducationForm}
+            data={data.Education}
           />
         );
         break;
@@ -74,11 +81,17 @@ class UserInput extends Component {
             handleDelete={handleDelete}
             addWorkOutput={addWork}
             addWorkForm={this.addWorkForm}
+            data={data["Work Experience"]}
           />
         );
         break;
       default:
-        page = <BasicInfoPage updateState={this.updateState} />;
+        page = (
+          <BasicInfoPage
+            updateState={this.updateState}
+            data={data["Basic Information"]}
+          />
+        );
     }
 
     return (
@@ -97,6 +110,43 @@ UserInput.propTypes = {
   handleDelete: PropTypes.func.isRequired,
   addEducation: PropTypes.func.isRequired,
   addWork: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    Education: PropTypes.objectOf(
+      PropTypes.shape({
+        "School Name": PropTypes.string,
+        Degree: PropTypes.string,
+        "Field of Study": PropTypes.string,
+        GPA: PropTypes.string,
+        "Start Date": PropTypes.string,
+        "End Date": PropTypes.string,
+        City: PropTypes.string,
+        State: PropTypes.string,
+        id: PropTypes.number,
+      })
+    ).isRequired,
+    "Work Experience": PropTypes.objectOf(
+      PropTypes.shape({
+        Employer: PropTypes.string,
+        "Position Title": PropTypes.string,
+        "Start Date": PropTypes.string,
+        "End Date": PropTypes.string,
+        City: PropTypes.string,
+        State: PropTypes.string,
+        id: PropTypes.number,
+      })
+    ).isRequired,
+    "Basic Information": PropTypes.objectOf(
+      PropTypes.shape({
+        "First Name": PropTypes.string,
+        "Last Name": PropTypes.string,
+        Email: PropTypes.string,
+        "Phone Number": PropTypes.string,
+        City: PropTypes.string,
+        State: PropTypes.string,
+        Zip: PropTypes.string,
+      })
+    ).isRequired,
+  }).isRequired,
 };
 
 export default UserInput;
