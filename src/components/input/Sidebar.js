@@ -16,6 +16,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div className="sidebar">
+        <div className="title">CV Craft</div>
         <ul className="list">
           <button
             className="pageBtn"

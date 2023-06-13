@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import UserInput from "./components/input/UserInput";
 import ResumeOutput from "./components/output/ResumeOutput";
+import './style.scss'
 
 class App extends Component {
   constructor(props) {

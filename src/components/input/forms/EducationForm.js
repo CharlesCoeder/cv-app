@@ -35,12 +35,6 @@ class EducationForm extends Component {
     } = this.props;
     return (
       <div className="inputSection">
-        <div>
-          Education
-          <button type="button" onClick={this.handleDelete}>
-            X
-          </button>
-        </div>
         <InputField
           key="School Name"
           id="School Name"
@@ -89,6 +83,9 @@ class EducationForm extends Component {
           onChange={this.handleFieldChange}
           value={State}
         />
+        <button className="removeSectionBtn" type="button" onClick={this.handleDelete}>
+          Remove Section
+        </button>
       </div>
     );
   }

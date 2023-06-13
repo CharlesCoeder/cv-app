@@ -5,7 +5,8 @@ import BasicInfoForm from "../forms/BasicInfoForm";
 function BasicInfoPage(props) {
   const { updateState, data } = props;
   return (
-    <div>
+    <div className="page">
+      <div className="intro">The Basic Stuff...</div>
       <BasicInfoForm updateState={updateState} data={data[0]} />
     </div>
   );

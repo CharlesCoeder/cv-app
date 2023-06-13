@@ -33,12 +33,6 @@ class WorkForm extends Component {
     } = this.props;
     return (
       <div className="inputSection">
-        <div>
-          Work Experience
-          <button type="button" onClick={this.handleDelete}>
-            X
-          </button>
-        </div>
         <InputField
           key="Employer"
           id="Employer"
@@ -75,6 +69,9 @@ class WorkForm extends Component {
           onChange={this.handleFieldChange}
           value={State}
         />
+        <button className="removeSectionBtn" type="button" onClick={this.handleDelete}>
+          Remove Section
+        </button>
       </div>
     );
   }

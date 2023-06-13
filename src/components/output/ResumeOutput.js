@@ -40,10 +40,10 @@ class ResumeOutput extends Component {
     return (
       <div className="ResumeOutput">
         <BasicInfo data={basicInfo} />
-        <h1>Education</h1>
+        <h1 className="sectionHeader">Education</h1>
         <hr />
         {educationSections}
-        <h1>Work Experience</h1>
+        <h1 className="sectionHeader">Work Experience</h1>
         <hr />
         {workSections}
       </div>

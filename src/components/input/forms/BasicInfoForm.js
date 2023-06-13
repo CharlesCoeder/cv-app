@@ -28,7 +28,6 @@ class BasicInfoForm extends Component {
     } = this.props;
     return (
       <div className="inputSection">
-        <div>Basic Information</div>
         <InputField
           key="First Name"
           id="First Name"

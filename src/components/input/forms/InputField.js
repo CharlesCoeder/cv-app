@@ -17,6 +17,7 @@ class InputField extends Component {
     const { value, id } = this.props;
     return (
       <div className="InputField">
+        <div className="label">{id}</div>
         <input onChange={this.handleChange} value={value} placeholder={id} />
       </div>
     );

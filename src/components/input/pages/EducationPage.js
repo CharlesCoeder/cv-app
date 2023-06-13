@@ -43,9 +43,10 @@ class EducationPage extends Component {
     ));
 
     return (
-      <div>
+      <div className="page">
+        <div className="intro">Tell us about your educational background...</div>
         {forms}
-        <button type="button" onClick={this.addEducation}>
+        <button className="addSectionBtn" type="button" onClick={this.addEducation}>
           Add Education
         </button>
       </div>

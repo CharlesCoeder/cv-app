@@ -43,9 +43,10 @@ class WorkPage extends Component {
     ));
 
     return (
-      <div>
+      <div className="page">
+        <div className="intro">What about any work experience?</div>
         {forms}
-        <button type="button" onClick={this.addWork}>
+        <button className="addSectionBtn" type="button" onClick={this.addWork}>
           Add Work
         </button>
       </div>
