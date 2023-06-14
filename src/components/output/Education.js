@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { format } from "date-fns";
 
 function Education(props) {
   const {
@@ -15,6 +16,10 @@ function Education(props) {
     },
   } = props;
 
+  function formatDate(dateObj) {
+    return format(dateObj, "MMMM yyyy");
+  }
+
   return (
     <div className="Education">
       <div className="school">
@@ -24,7 +29,7 @@ function Education(props) {
         {degree} in {fieldOfStudy}, GPA {gpa}
       </div>
       <div className="dates">
-        {startDate} - {endDate}
+        {formatDate(startDate)} - {formatDate(endDate)}
       </div>
     </div>
   );
@@ -36,8 +41,8 @@ Education.propTypes = {
     Degree: PropTypes.string.isRequired,
     "Field of Study": PropTypes.string.isRequired,
     GPA: PropTypes.string.isRequired,
-    "Start Date": PropTypes.string.isRequired,
-    "End Date": PropTypes.string.isRequired,
+    "Start Date": PropTypes.instanceOf(Date).isRequired,
+    "End Date": PropTypes.instanceOf(Date).isRequired,
     City: PropTypes.string.isRequired,
     State: PropTypes.string.isRequired,
   }).isRequired,

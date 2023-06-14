@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import UserInput from "./components/input/UserInput";
 import ResumeOutput from "./components/output/ResumeOutput";
-import './style.scss'
+import "./style.scss";
 
 class App extends Component {
   constructor(props) {
@@ -27,8 +27,8 @@ class App extends Component {
           Degree: "BS",
           "Field of Study": "Computer Science",
           GPA: "4.0",
-          "Start Date": "08/15/2018",
-          "End Date": "05/20/2022",
+          "Start Date": new Date("08-15-2018"),
+          "End Date": new Date("05-20-2022"),
           City: "New York",
           State: "NY",
           id: 0,
@@ -39,8 +39,8 @@ class App extends Component {
         0: {
           Employer: "Quickfold Dynamics",
           "Position Title": "Software Engineer",
-          "Start Date": "06/15/2022",
-          "End Date": "03/30/2023",
+          "Start Date": new Date("06-15-2022"),
+          "End Date": new Date("03-30-2023"),
           City: "New York",
           State: "NY",
           id: 0,
@@ -74,8 +74,8 @@ class App extends Component {
           Degree: "BS",
           "Field of Study": "Computer Science",
           GPA: "4.0",
-          "Start Date": "08/15/2018",
-          "End Date": "05/20/2022",
+          "Start Date": new Date("08-15-2018"),
+          "End Date": new Date("05-20-2022"),
           City: "New York",
           State: "NY",
           sectionType: "Education",
@@ -95,8 +95,8 @@ class App extends Component {
         [prevState.workCounter]: {
           Employer: "Quickfold Dynamics",
           "Position Title": "Software Engineer",
-          "Start Date": "06/15/2022",
-          "End Date": "03/30/2023",
+          "Start Date": new Date("06-15-2022"),
+          "End Date": new Date("03-30-2023"),
           City: "New York",
           State: "NY",
           sectionType: "Work Experience",

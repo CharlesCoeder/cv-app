@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import Flatpickr from "react-flatpickr";
+import MonthSelectPlugin from "flatpickr/dist/plugins/monthSelect/index";
+import "flatpickr/dist/themes/light.css";
+import "flatpickr/dist/plugins/monthSelect/style.css";
 import PropTypes from "prop-types";
 import InputField from "./InputField";
 
@@ -14,6 +18,16 @@ class WorkForm extends Component {
     const { updateState, id } = this.props;
     updateState("Work Experience", id, fieldId, value);
   }
+
+  handleDateChange = (key) => (dateArray) => {
+    const { updateState, id } = this.props;
+    const date = dateArray[0];
+    if (key === "Start Date") {
+      updateState("Work Experience", id, "Start Date", date);
+    } else if (key === "End Date") {
+      updateState("Work Experience", id, "End Date", date);
+    }
+  };
 
   handleDelete() {
     const { handleDelete, id } = this.props;
@@ -45,18 +59,44 @@ class WorkForm extends Component {
           onChange={this.handleFieldChange}
           value={positionTitle}
         />
-        <InputField
-          key="Start Date"
-          id="Start Date"
-          onChange={this.handleFieldChange}
-          value={startDate}
-        />
-        <InputField
-          key="End Date"
-          id="End Date"
-          onChange={this.handleFieldChange}
-          value={endDate}
-        />
+        <div>
+          <div className="label">Start Date</div>
+          <Flatpickr
+            data-enable-time
+            value={startDate}
+            onChange={this.handleDateChange("Start Date")}
+            options={{
+              mode: "single",
+              dateFormat: "M Y",
+              plugins: [
+                new MonthSelectPlugin({
+                  shorthand: true,
+                  dateFormat: "M Y",
+                  altFormat: "F Y",
+                }),
+              ],
+            }}
+          />
+        </div>
+        <div>
+          <div className="label">End Date</div>
+          <Flatpickr
+            data-enable-time
+            value={endDate}
+            onChange={this.handleDateChange("End Date")}
+            options={{
+              mode: "single",
+              dateFormat: "M Y",
+              plugins: [
+                new MonthSelectPlugin({
+                  shorthand: true,
+                  dateFormat: "M Y",
+                  altFormat: "F Y",
+                }),
+              ],
+            }}
+          />
+        </div>
         <InputField
           key="City"
           id="City"
@@ -69,7 +109,11 @@ class WorkForm extends Component {
           onChange={this.handleFieldChange}
           value={State}
         />
-        <button className="removeSectionBtn" type="button" onClick={this.handleDelete}>
+        <button
+          className="removeSectionBtn"
+          type="button"
+          onClick={this.handleDelete}
+        >
           Remove Section
         </button>
       </div>
@@ -84,8 +128,8 @@ WorkForm.propTypes = {
   data: PropTypes.shape({
     Employer: PropTypes.string,
     "Position Title": PropTypes.string,
-    "Start Date": PropTypes.string,
-    "End Date": PropTypes.string,
+    "Start Date": PropTypes.instanceOf(Date),
+    "End Date": PropTypes.instanceOf(Date),
     City: PropTypes.string,
     State: PropTypes.string,
   }).isRequired,

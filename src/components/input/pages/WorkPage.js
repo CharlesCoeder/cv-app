@@ -57,8 +57,8 @@ class WorkPage extends Component {
 const workItemPropType = PropTypes.shape({
   Employer: PropTypes.string,
   "Position Title": PropTypes.string,
-  "Start Date": PropTypes.string,
-  "End Date": PropTypes.string,
+  "Start Date": PropTypes.instanceOf(Date),
+  "End Date": PropTypes.instanceOf(Date),
   City: PropTypes.string,
   State: PropTypes.string,
 });
