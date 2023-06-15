@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
+import { Interweave } from "interweave";
 
 function Education(props) {
   const {
@@ -13,6 +14,7 @@ function Education(props) {
       "End Date": endDate,
       City: city,
       State: state,
+      description,
     },
   } = props;
 
@@ -22,15 +24,22 @@ function Education(props) {
 
   return (
     <div className="Education">
-      <div className="school">
-        {schoolName} | {city}, {state}
+      <div className="flex">
+        <div className="school">
+          {schoolName} | {city}, {state}
+        </div>
+        <div className="dates">
+          {formatDate(startDate)} - {formatDate(endDate)}
+        </div>
       </div>
       <div className="degree">
         {degree} in {fieldOfStudy}, GPA {gpa}
       </div>
-      <div className="dates">
-        {formatDate(startDate)} - {formatDate(endDate)}
-      </div>
+      {description ? (
+        <div className="description">
+          <Interweave content={description} />
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -45,6 +54,7 @@ Education.propTypes = {
     "End Date": PropTypes.instanceOf(Date).isRequired,
     City: PropTypes.string.isRequired,
     State: PropTypes.string.isRequired,
+    description: PropTypes.string,
   }).isRequired,
 };
 

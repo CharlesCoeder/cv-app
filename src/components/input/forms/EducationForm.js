@@ -4,7 +4,13 @@ import MonthSelectPlugin from "flatpickr/dist/plugins/monthSelect/index";
 import "flatpickr/dist/themes/light.css";
 import "flatpickr/dist/plugins/monthSelect/style.css";
 import PropTypes from "prop-types";
+import ReactQuill from "react-quill";
 import InputField from "./InputField";
+import "react-quill/dist/quill.snow.css";
+
+const modules = {
+  toolbar: [["bold", "italic", "underline"], [{ list: "bullet" }]],
+};
 
 class EducationForm extends Component {
   constructor(props) {
@@ -12,11 +18,22 @@ class EducationForm extends Component {
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+    this.quillRef = React.createRef();
   }
 
   handleFieldChange(fieldId, value) {
     const { updateState, id } = this.props;
     updateState("Education", id, fieldId, value);
+  }
+
+  handleDescriptionChange(value) {
+    const { updateState, id } = this.props;
+    let val = value;
+    if (this.quillRef.current.getEditor().getText() === "\n") {
+      val = "";
+    }
+    updateState("Education", id, "description", val);
   }
 
   handleDateChange = (key) => (dateArray) => {
@@ -45,6 +62,7 @@ class EducationForm extends Component {
         "End Date": endDate,
         City,
         State,
+        description,
       },
     } = this.props;
     return (
@@ -73,7 +91,7 @@ class EducationForm extends Component {
           onChange={this.handleFieldChange}
           value={GPA}
         />
-        <div>
+        <div className="dateField">
           <div className="label">Start Date</div>
           <Flatpickr
             data-enable-time
@@ -92,7 +110,7 @@ class EducationForm extends Component {
             }}
           />
         </div>
-        <div>
+        <div className="dateField">
           <div className="label">End Date</div>
           <Flatpickr
             data-enable-time
@@ -123,6 +141,15 @@ class EducationForm extends Component {
           onChange={this.handleFieldChange}
           value={State}
         />
+        <div className="descriptionField">
+          <div className="label">Description</div>
+          <ReactQuill
+            ref={this.quillRef}
+            value={description}
+            onChange={this.handleDescriptionChange}
+            modules={modules}
+          />
+        </div>
         <button
           className="removeSectionBtn"
           type="button"
@@ -148,6 +175,7 @@ EducationForm.propTypes = {
     "End Date": PropTypes.instanceOf(Date),
     City: PropTypes.string,
     State: PropTypes.string,
+    description: PropTypes.string,
   }).isRequired,
 };
 

@@ -4,7 +4,7 @@
 
 :root {
   --header-size: 1.25rem;
-  --text-size: .75rem;
+  --text-size: 0.75rem;
 }
 
 body {
@@ -21,8 +21,6 @@ body {
 
 .UserInput {
   background-color: rgb(237, 237, 237);
-  grid-row: 1 / 2;
-  grid-column: 1 / 2;
   display: flex;
   align-items: center;
   width: 100%;
@@ -35,7 +33,7 @@ body {
   flex: 4;
   display: flex;
   flex-direction: column;
-  justify-content:flex-start;
+  justify-content: flex-start;
   padding-left: 100px;
   gap: 20px;
   height: 100%;
@@ -71,6 +69,17 @@ body {
   width: 200px;
 }
 
+.descriptionField {
+  grid-column: 1 / 3;
+}
+
+.quill {
+  width: 83.5%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
 ////////////////////
 // RESUME STYLING //
 ////////////////////
@@ -85,13 +94,12 @@ body {
 }
 
 .basicInformation {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .name {
-  grid-column: 1 / 4;
   text-align: center;
   font-weight: bold;
   font-size: 2rem;
@@ -107,7 +115,7 @@ h1 {
 
 hr {
   margin-block-start: 0;
-  margin-block-end: .25em;
+  margin-block-end: 0.25em;
 }
 
 .school,
@@ -117,23 +125,27 @@ hr {
 
 .Education,
 .WorkExperience {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
 }
 
-.Education, .WorkExperience > div {
+.Education,
+.WorkExperience > div {
   font-size: var(--text-size);
-}
-
-.dates {
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  text-align: end;
 }
 
 .positionTitle {
   font-weight: bold;
   font-style: italic;
+}
+
+.description > span > * {
+  margin-block: 0;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
 }
 
 //////////////////////

@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { format } from "date-fns";
+import { Interweave } from "interweave";
 
 function WorkExperience(props) {
   const {
@@ -11,6 +12,7 @@ function WorkExperience(props) {
       "End Date": endDate,
       City: city,
       State: state,
+      description,
     },
   } = props;
 
@@ -20,13 +22,18 @@ function WorkExperience(props) {
 
   return (
     <div className="WorkExperience">
-      <div className="employer">
-        {employer} | {city}, {state}
+      <div className="flex">
+        <div className="employer">
+          {employer} | {city}, {state}
+        </div>
+        <div className="dates">
+          {formatDate(startDate)} - {formatDate(endDate)}
+        </div>
       </div>
       <div className="positionTitle">{positionTitle}</div>
-      <div className="dates">
-        {formatDate(startDate)} - {formatDate(endDate)}
-      </div>
+      {description ? <div className="description">
+        <Interweave content={description} />
+      </div> : null}
     </div>
   );
 }
@@ -39,6 +46,7 @@ WorkExperience.propTypes = {
     "End Date": PropTypes.instanceOf(Date).isRequired,
     City: PropTypes.string.isRequired,
     State: PropTypes.string.isRequired,
+    description: PropTypes.string,
   }).isRequired,
 };
 
