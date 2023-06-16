@@ -19,7 +19,7 @@ function Education(props) {
   } = props;
 
   function formatDate(dateObj) {
-    return format(dateObj, "MMMM yyyy");
+    return dateObj ? format(dateObj, "MMMM yyyy") : "";
   }
 
   return (
@@ -50,8 +50,8 @@ Education.propTypes = {
     Degree: PropTypes.string.isRequired,
     "Field of Study": PropTypes.string.isRequired,
     GPA: PropTypes.string.isRequired,
-    "Start Date": PropTypes.instanceOf(Date).isRequired,
-    "End Date": PropTypes.instanceOf(Date).isRequired,
+    "Start Date": PropTypes.instanceOf(Date),
+    "End Date": PropTypes.instanceOf(Date),
     City: PropTypes.string.isRequired,
     State: PropTypes.string.isRequired,
     description: PropTypes.string,

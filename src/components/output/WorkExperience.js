@@ -17,7 +17,7 @@ function WorkExperience(props) {
   } = props;
 
   function formatDate(dateObj) {
-    return format(dateObj, "MMMM yyyy");
+    return dateObj ? format(dateObj, "MMMM yyyy") : "";
   }
 
   return (
@@ -31,9 +31,11 @@ function WorkExperience(props) {
         </div>
       </div>
       <div className="positionTitle">{positionTitle}</div>
-      {description ? <div className="description">
-        <Interweave content={description} />
-      </div> : null}
+      {description ? (
+        <div className="description">
+          <Interweave content={description} />
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -42,8 +44,8 @@ WorkExperience.propTypes = {
   data: PropTypes.shape({
     Employer: PropTypes.string.isRequired,
     "Position Title": PropTypes.string.isRequired,
-    "Start Date": PropTypes.instanceOf(Date).isRequired,
-    "End Date": PropTypes.instanceOf(Date).isRequired,
+    "Start Date": PropTypes.instanceOf(Date),
+    "End Date": PropTypes.instanceOf(Date),
     City: PropTypes.string.isRequired,
     State: PropTypes.string.isRequired,
     description: PropTypes.string,
