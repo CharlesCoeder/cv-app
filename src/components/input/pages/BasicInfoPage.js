@@ -1,4 +1,4 @@
- import React from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import BasicInfoForm from "../forms/BasicInfoForm";
 
@@ -6,7 +6,7 @@ function BasicInfoPage(props) {
   const { updateState, data } = props;
   return (
     <div className="page">
-      <div className="intro">The Basic Stuff...</div>
+      <div className="intro">How can employers reach you?</div>
       <BasicInfoForm updateState={updateState} data={data[0]} />
     </div>
   );
@@ -15,13 +15,12 @@ function BasicInfoPage(props) {
 const basicInfoPropType = PropTypes.shape({
   "First Name": PropTypes.string,
   "Last Name": PropTypes.string,
-  "Email": PropTypes.string,
+  Email: PropTypes.string,
   "Phone Number": PropTypes.string,
   City: PropTypes.string,
   State: PropTypes.string,
-  "Zip": PropTypes.string,
+  Zip: PropTypes.string,
 });
-
 
 BasicInfoPage.propTypes = {
   updateState: PropTypes.func.isRequired,

@@ -7,9 +7,15 @@
   --text-size: 0.75rem;
 }
 
+$pink: #eb787a;
+$blue: #347fc4;
+$black: #000000;
+$white: #ffffff;
+
 body {
   margin: 0;
   font-family: Calibri, sans-serif;
+  overflow: hidden;
 }
 
 .App {
@@ -20,7 +26,6 @@ body {
 }
 
 .UserInput {
-  background-color: rgb(237, 237, 237);
   display: flex;
   align-items: center;
   width: 100%;
@@ -31,18 +36,23 @@ body {
 .page {
   box-sizing: border-box;
   flex: 4;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-left: 100px;
-  gap: 20px;
+  padding-left: 50px;
+  gap: 10px;
   height: 100%;
+  color: $blue;
+  overflow: auto;
+  margin-top: 30px;
 }
 
 .intro {
   margin-top: 30px;
   font-weight: bold;
   font-size: 2rem;
+  padding-left: 15px;
 }
 
 .title {
@@ -50,8 +60,10 @@ body {
   font-weight: bold;
   font-size: 2rem;
   text-align: center;
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 50px;
+  white-space: nowrap;
+  padding: 15px;
 }
 
 .inputSection {
@@ -69,8 +81,14 @@ body {
   width: 200px;
 }
 
-.descriptionField {
+.bottomContainer {
   grid-column: 1 / 3;
+  display: flex;
+  align-items: center;
+}
+
+.descriptionField {
+  flex: 1;
 }
 
 .quill {
@@ -78,19 +96,44 @@ body {
   height: 100px;
   display: flex;
   flex-direction: column;
+  color: black;
 }
 
-////////////////////
-// RESUME STYLING //
-////////////////////
+.quill .ql-toolbar {
+  border: 0.75px solid $blue;
+}
+
+.quill > .ql-container {
+  border: 0.75px solid $blue;
+  max-height: 90px;
+}
+
+input {
+  border: 0.75px solid $blue;
+  min-width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border: 1.5px solid $blue;
+}
+
+.InputField,
+.dateField,
+.descriptionField {
+  padding: 15px;
+}
 
 .ResumeOutput {
+  box-sizing: border-box;
   aspect-ratio: 8.5 / 11;
   margin: 0px 35px 0px;
   width: 800px;
   padding: scaleValue(20px);
   border: 1px solid black;
   flex: 0.5;
+  font-size: var(--text-size);
 }
 
 .basicInformation {
@@ -102,7 +145,7 @@ body {
 .name {
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .sectionHeader {
@@ -129,11 +172,6 @@ hr {
   flex-direction: column;
 }
 
-.Education,
-.WorkExperience > div {
-  font-size: var(--text-size);
-}
-
 .positionTitle {
   font-weight: bold;
   font-style: italic;
@@ -148,9 +186,45 @@ hr {
   justify-content: space-between;
 }
 
-//////////////////////
-/// SIDEBAR STYLING //
-//////////////////////
+.page {
+  &:hover .ps__rail-y > .ps__thumb-y,
+  &:focus .ps__rail-y > .ps__thumb-y,
+  &.ps__rail-y.ps--clicking .ps__thumb-y {
+    background-color: $blue;
+  }
+}
+
+.page {
+  &:hover > .ps__rail-x,
+  &:hover > .ps__rail-y,
+  &.ps--focus > .ps__rail-x,
+  &.ps--focus > .ps__rail-y,
+  &.ps--scrolling-x > .ps__rail-x,
+  &.ps--scrolling-y > .ps__rail-y {
+    opacity: 0.85;
+  }
+}
+
+.page {
+  .ps {
+    &__rail-x:hover,
+    &__rail-y:hover,
+    &__rail-x:focus,
+    &__rail-y:focus,
+    &__rail-x.ps--clicking,
+    &__rail-y.ps--clicking {
+      opacity: 1;
+    }
+  }
+}
+
+.page .ps__thumb-y {
+  background-color: $blue;
+}
+
+.page .ps__thumb-y::before {
+  background-color: $blue;
+}
 
 .pageBtn {
   background-color: transparent;
@@ -164,10 +238,12 @@ hr {
   cursor: pointer;
   padding: 10px;
   border-radius: 20px;
+  color: white;
 }
 
 .pageBtn:hover {
-  background-color: lightgray;
+  background-color: white;
+  color: $pink;
 }
 
 .list {
@@ -179,9 +255,124 @@ hr {
 }
 
 .sidebar {
+  box-sizing: border-box;
   flex: 1;
   padding-left: 25px;
   padding-right: 25px;
-  background-color: lightblue;
+  background-color: $pink;
   height: 100%;
+  color: white;
+}
+
+@mixin cross($size: 20px, $color: currentColor, $thickness: 1px) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  position: relative;
+  width: $size;
+  height: $size;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    top: ($size - $thickness) / 2;
+    left: 0;
+    right: 0;
+    height: $thickness;
+    background: $color;
+    border-radius: $thickness;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+
+  span {
+    display: block;
+  }
+}
+
+.removeSectionBtn {
+  align-self: flex-end;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  border: 0;
+  padding: 0;
+  background: $blue;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 150ms;
+
+  .icon-cross {
+    @include cross(20px, #fff, 3px);
+  }
+
+  &:hover,
+  &:focus {
+    transform: rotateZ(90deg);
+    background: $blue;
+  }
+}
+
+// For screen readers
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+.addSectionBtn {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: $pink;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px 5px 20px 15px;
+}
+
+.addSectionBtn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.25s;
+}
+
+.addSectionBtn span:after {
+  content: " +";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.25s;
+}
+
+.addSectionBtn:hover span {
+  padding-right: 25px;
+}
+
+.addSectionBtn:hover span:after {
+  opacity: 1;
+  right: 0;
 }

@@ -127,22 +127,25 @@ class WorkForm extends Component {
           onChange={this.handleFieldChange}
           value={State}
         />
-        <div className="descriptionField">
-          <div className="label">Description</div>
-          <ReactQuill
-            ref={this.quillRef}
-            value={description}
-            onChange={this.handleDescriptionChange}
-            modules={modules}
-          />
+        <div className="bottomContainer">
+          <div className="descriptionField">
+            <div className="label">Description</div>
+            <ReactQuill
+              ref={this.quillRef}
+              value={description}
+              onChange={this.handleDescriptionChange}
+              modules={modules}
+            />
+          </div>
+          <button
+            onClick={this.handleDelete}
+            type="button"
+            className="removeSectionBtn"
+          >
+            <span className="icon-cross" />
+            <span className="visually-hidden">Close</span>
+          </button>
         </div>
-        <button
-          className="removeSectionBtn"
-          type="button"
-          onClick={this.handleDelete}
-        >
-          Remove Section
-        </button>
       </div>
     );
   }

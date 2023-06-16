@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import "react-perfect-scrollbar/dist/css/styles.css";
+import PerfectScrollbar from "react-perfect-scrollbar";
 import WorkForm from "../forms/WorkForm";
 
 class WorkPage extends Component {
@@ -43,13 +45,18 @@ class WorkPage extends Component {
     ));
 
     return (
-      <div className="page">
+      <PerfectScrollbar className="page">
         <div className="intro">What about any work experience?</div>
         {forms}
-        <button className="addSectionBtn" type="button" onClick={this.addWork}>
-          Add Work
+        <button
+          className="addSectionBtn"
+          type="button"
+          onClick={this.addWork}
+          style={{ verticalAlign: "middle" }}
+        >
+          <span>Add Section</span>
         </button>
-      </div>
+      </PerfectScrollbar>
     );
   }
 }

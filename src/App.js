@@ -14,7 +14,7 @@ class App extends Component {
           "First Name": "John",
           "Last Name": "Doe",
           Email: "johndoe@gmail.com",
-          "Phone Number": "5550007777",
+          "Phone Number": "555-286-7037",
           City: "New York",
           State: "NY",
           Zip: "10029",

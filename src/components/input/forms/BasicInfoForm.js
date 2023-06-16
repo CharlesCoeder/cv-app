@@ -51,6 +51,7 @@ class BasicInfoForm extends Component {
           id="Phone Number"
           onChange={this.handleFieldChange}
           value={phoneNumber}
+          mask="999-999-9999"
         />
         <InputField
           key="City"

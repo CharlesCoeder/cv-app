@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import InputMask from "react-input-mask";
 
 class InputField extends Component {
   constructor(props) {
@@ -14,11 +15,17 @@ class InputField extends Component {
   }
 
   render() {
-    const { value, id } = this.props;
+    const { value, id, mask } = this.props;
     return (
       <div className="InputField">
         <div className="label">{id}</div>
-        <input onChange={this.handleChange} value={value} placeholder={id} />
+        <InputMask
+          mask={mask}
+          onChange={this.handleChange}
+          value={value}
+          placeholder={id}
+          maskChar={null}
+        />
       </div>
     );
   }
@@ -28,10 +35,12 @@ InputField.propTypes = {
   onChange: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   value: PropTypes.string,
+  mask: PropTypes.string,
 };
 
 InputField.defaultProps = {
   value: "",
+  mask: null,
 };
 
 export default InputField;
