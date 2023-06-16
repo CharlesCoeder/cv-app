@@ -13,6 +13,12 @@
  * MIT Licensed
  */
 
+/*!
+ * perfect-scrollbar v1.5.3
+ * Copyright 2021 Hyunje Jun, MDBootstrap and Contributors
+ * Licensed under MIT
+ */
+
 /*! *****************************************************************************
   Copyright (c) Microsoft Corporation.
     Permission to use, copy, modify, and/or distribute this software for any
