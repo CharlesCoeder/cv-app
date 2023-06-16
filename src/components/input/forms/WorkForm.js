@@ -10,6 +10,9 @@ import "react-quill/dist/quill.snow.css";
 
 const modules = {
   toolbar: [["bold", "italic", "underline"], [{ list: "bullet" }]],
+  clipboard: {
+    matchVisual: false,
+  },
 };
 
 class WorkForm extends Component {
@@ -27,14 +30,20 @@ class WorkForm extends Component {
     updateState("Work Experience", id, fieldId, value);
   }
 
-  handleDescriptionChange(value) {
-    const { updateState, id } = this.props;
-    let val = value;
-    if (this.quillRef.current.getEditor().getText() === "\n") {
-      val = "";
+  handleDescriptionChange = (value) => {
+    if (
+      this.quillRef &&
+      this.quillRef.current &&
+      this.quillRef.current.getEditor
+    ) {
+      const { updateState, id } = this.props;
+      let val = value;
+      if (this.quillRef.current.getEditor().getText() === "\n") {
+        val = "";
+      }
+      updateState("Work Experience", id, "description", val);
     }
-    updateState("Work Experience", id, "description", val);
-  }
+  };
 
   handleDateChange = (key) => (dateArray) => {
     const { updateState, id } = this.props;
